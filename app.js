@@ -11,7 +11,7 @@ const projectName = "server"
 app.locals.appTitle = `Freediving`
 
 const index = require("./routes/index.routes")
-app.use("/", index)
+app.use("/api", index)
 
 require("./error-handling")(app)
 

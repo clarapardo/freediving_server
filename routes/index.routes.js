@@ -1,7 +1,8 @@
 const router = require("express").Router()
 
 
-module.exports = (router) => {
+router.use("/photography", require('./photographs.routes'))
 
-    router.use("/photography", require('./photographs.routes'))
-}
+
+
+module.exports = router

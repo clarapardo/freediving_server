@@ -18,7 +18,7 @@ const photoSchema = new Schema(
             type: [Number],
             required: true
         },
-        pictureUrl: {
+        photoUrl: {
             type: String,
             required: true
         },
