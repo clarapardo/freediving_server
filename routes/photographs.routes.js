@@ -7,10 +7,10 @@ const Photo = require('./../models/Photo.model')
 // ----- CREATE -----
 router.post('/addPhoto', (req, res, next) => {
 
-    const { title, description, price, dimensions, photoUrl } = req.body
+    const { title, description, price, dimensions, photoUrl, location } = req.body
 
     Photo
-        .create({ title, description, price, dimensions, photoUrl, sales: 0, visits: 0 })
+        .create({ title, description, price, dimensions, photoUrl, location, sales: 0, visits: 0, gridSize: 'medium' })
         .then(newPhoto => res.status(200).json(newPhoto))
         .catch(err => res.status(500).json(err))
 })

@@ -22,8 +22,13 @@ const photoSchema = new Schema(
             type: String,
             required: true
         },
+        location: String,
         sales: Number,
-        visits: Number
+        visits: Number,
+        gridSize: {
+            type: String,
+            enum: ['small', 'square', 'medium', 'large', 'extralarge']
+        }
     },
     { timestamps: true }
 )
