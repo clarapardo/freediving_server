@@ -1,10 +1,11 @@
 const express = require('express')
+const Stripe = require('stripe')
 const router = express.Router()
 const Photo = require('./../models/Photo.model')
-
 const User = require('./../models/User.model')
 const Cart = require('./../models/Cart.model')
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 
 // ----- READ -----
@@ -72,6 +73,23 @@ router.delete('/:userId/removeCart', (req, res, next) => {
         })
         .then(() => res.status(200).json("ok"))
         .catch(err => res.status(500).json(err))
+})
+
+
+// ----- PAYMENT WITH STRIPE.JS -----
+router.post('/checkout', async (req, res, next) => {
+
+    const { id, amount } = req.body
+
+    await stripe.paymentIntents.create({
+        amount,
+        currency: 'USD',
+        description: 'Gaming Keyboard',
+        payment_method: id,
+        confirm: true
+    })
+        .then(payment => res.json({ message: 'Succesfull payment' }))
+        .catch(err => res.json({ message: err.raw.message }))
 })
 
 
