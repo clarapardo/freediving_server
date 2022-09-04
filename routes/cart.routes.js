@@ -83,8 +83,8 @@ router.post('/checkout', async (req, res, next) => {
 
     await stripe.paymentIntents.create({
         amount,
-        currency: 'USD',
-        description: 'Gaming Keyboard',
+        currency: 'usd',
+        description: 'RafaelFernándezPhotography',
         payment_method: id,
         confirm: true
     })
